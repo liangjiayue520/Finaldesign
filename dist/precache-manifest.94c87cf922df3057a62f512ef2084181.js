@@ -64,7 +64,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/forest.js"
   },
   {
-    "revision": "e9c64cd04b40a90e6536a7f97ee1467e",
+    "revision": "4e46461984a388f99ceef38aa183066c",
     "url": "/static/heatmap-cartesian.html"
   },
   {
@@ -72,7 +72,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/heatmap.html"
   },
   {
-    "revision": "d2c2793f2c39ab604235a2a4e51d7ac9",
+    "revision": "64123ff0a3ea7adfb42f225ea34600cc",
     "url": "/static/input-try.html"
   },
   {
@@ -96,7 +96,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/wordcloud.html"
   },
   {
-    "revision": "0add9caa4c81126fe465e5d3cc99742a",
+    "revision": "b1227314ba0ee74321fbae830f067769",
     "url": "/static/动态柱状图final.html"
   },
   {
@@ -104,7 +104,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/情感指数.html"
   },
   {
-    "revision": "0b82210b6425fb7a10935971de728603",
+    "revision": "3b4eac209457aa7a829da138f9c42ed5",
     "url": "/static/春运迁徙.html"
   },
   {
