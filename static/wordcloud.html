@@ -1,0 +1,198 @@
+<html style="height: 100%">
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body style="height: 100%; width: 100%; margin: 0">
+		<div id="container" style="height: 100%;width: 100%;"></div>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+		<script type="text/javascript" src="dark.js"></script>
+		<script type="text/javascript">
+			var dom = document.getElementById("container");
+			var myChart = echarts.init(dom);
+			var app = {};
+			var option;
+			var mapdata = [];
+			var everydaydata = [];
+
+			function mycolor() {
+				var colorarrays = ["#45d532", "#f1fc20", "#ff4a86", "#a5dc19", "#fc887d", "#36e582", "#5bdcea",
+					"#f77a14", "#e227fe", "#28e251", "#f75167"
+				];
+				return colorarrays[Math.floor(Math.random() * 10)];
+			}
+
+			d3.csv("mergeall.csv", function(error, csvdata) {
+				// console.log(csvdata);
+
+
+
+
+				for (var i = 0; i < 18; i++) {
+					mapdata[i] = new Array();
+					everydaydata[i] = new Array();
+				}
+
+				var flag = 0;
+				for (var i = 0; i < csvdata.length; i++) {
+					console.log(typeof(csvdata[i]));
+					if (i <= 49) {
+						mapdata[flag].push(csvdata[i]);
+					}
+					if (csvdata[i][10086] == "10086") {
+						flag++;
+					}
+					if (i > 49 && csvdata[i][10086] != "10086") {
+						mapdata[flag].push(csvdata[i]);
+					}
+				}
+
+				function changesize(m) {
+					var k = 0;
+					if (m > 30 && m < 50)
+						k = m / 2;
+					if (m < 15)
+						k = m + 12;
+					if (m > 12 && m < 20)
+						k = m + 4;
+					if (m > 50)
+						k = m / 4;
+					k = k * 5;
+					return k;
+				}
+
+
+				for (var j = 0; j < 18; j++) {
+					for (var i = 0; i < 50; i++) {
+						console.log(typeof(mapdata[j][i]));
+						if (typeof(mapdata[j][i]) == "undefined")
+							continue;
+						// var obj = {
+						// 	"name": mapdata[j][i]["词条"],
+						// 	"value": parseInt(mapdata[j][i][10086]),
+						// 	"symbolSize": parseInt(mapdata[j][i][10086])*2 ,
+						// 	"draggable": true,
+						// 	"itemStyle": {
+						// 		"normal": {
+						// 			"shadowBlur": 100, //阴影扩散
+						// 			"shadowColor": mycolor(),
+						// 			"color": mycolor(),
+						// 			"fontsize":90
+						// 		}
+						// 	}
+						// }
+
+						var obj = {
+							"name": mapdata[j][i]["词条"],
+							"value": parseInt(mapdata[j][i][10086]),
+							"symbolSize": changesize(parseInt(mapdata[j][i][10086])),
+							"draggable": true,
+							"itemStyle": {
+								"normal": {
+									"shadowBlur": 100, //阴影扩散
+									"shadowColor": mycolor(),
+									"color": mycolor()
+								}
+							}
+						}
+						everydaydata[j].push(obj);
+					}
+					// if(j==2)
+					// console.log(everydaydata);
+				}
+				console.log(everydaydata);
+
+
+				//准备操作的option
+				option = {
+					baseOption: {
+						timeline: {
+							axisType: 'category',
+							orient: 'horizontal',
+							autoPlay: true,
+							//inverse: true,
+							playInterval: 5000,
+							// left: null,
+							// right: 0,
+							// top: 800,
+							// bottom: 400,
+							// // width: 70,
+							// height: null,
+							symbol: 'diamond',
+							checkpointStyle: {
+								borderWidth: 2
+							},
+							controlStyle: {
+								showNextBtn: false,
+								showPrevBtn: false
+							},
+							data: []
+						},
+						series: [{
+							type: 'map',
+							mapType: 'china',
+
+
+						}],
+						animationDurationUpdate: 1000,
+						animationEasingUpdate: 'quinticInOut'
+					},
+					options: [
+						
+					]
+				};
+
+				var month = ['01/14', '01/15', '01/16', '01/17', '01/18', '01/19', '01/20', '01/21', '01/22', '01/23', '01/24',
+					'01/25', '01/26', '01/27', '01/28', '01/29', '01/30', '01/31'
+				]
+
+				for (var i = 0; i < 18; i++) {
+					option.baseOption.timeline.data.push(month[i]);
+					option.options.push({
+						backgroundColor: '#000000',
+						title: {
+							text: "微博热词云球",
+							left: "30%",
+							textStyle: {
+								fontSize: 20,
+								color:"#fff",
+							},
+						},
+						tooltip: {
+							show: true,
+							transitionDuration: 0
+						},
+						animationDurationUpdate: function(idx) {
+							// 越往后的数据延迟越大
+							return idx * 1000;
+						},
+						animationEasing: 'elasticOut',
+						animationEasingUpdate: 'bounceIn',
+						//animationEasingUpdate:'quinticInOut',
+						// animationEasingUpdate:'cubicInOut',
+						color: ['#fff', '#fff', '#fff'],
+						series: [{
+							type: 'graph',
+							layout: 'force',
+							force: {
+								repulsion: 500,
+								edgeLength: 10
+							},
+							roam: true,
+							label: {
+								normal: {
+									show: true
+								}
+							},
+							data: everydaydata[i]
+						}]
+					})
+				}
+
+				if (option && typeof option === 'object') {
+					myChart.setOption(option);
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=scatter-effect
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body style="height: 100%; margin: 0">
+		<div id="container" style="height: 100%"></div>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			var dom = document.getElementById("container");
+			var myChart = echarts.init(dom);
+			var app = {};
+			var option;
+			d3.csv = d3.dsv(",", "text/csv;charset=gb2312");
+			d3.csv("聚类结果.csv", function(error, csvdata) {
+				console.log(csvdata);
+				var data0 = [];
+				var data1 = [];
+				var data2 = [];
+				for (var i = 0; i < csvdata.length; i++) {
+					if (i <= 11)
+						data0.push([csvdata[i].x, csvdata[i].y]);
+					if (i > 11 && i <= 20)
+						data2.push([csvdata[i].x, csvdata[i].y]);
+					if (i > 20 && i <= 42)
+						data1.push([csvdata[i].x, csvdata[i].y]);
+					if (i > 42 && i <= 57)
+						data2.push([csvdata[i].x, csvdata[i].y]);
+					if (i > 57)
+						data0.push([csvdata[i].x, csvdata[i].y]);
+				}
+				option = {
+					title: {
+						text: "疫情发展时序聚类结果",
+						left: "40%",
+						textStyle: {
+							fontSize: 20,
+							color:"#fff",
+						},
+					},
+					backgroundColor: "#000",
+					xAxis: {
+						scale: true
+					},
+					yAxis: {
+						scale: true
+					},
+					series: [{
+							type: 'scatter',
+							// type: 'effectScatter',
+							symbolSize: 20,
+							color: 'yellow',
+							data: data0,
+						}, {
+							type: 'scatter',
+							// type: 'effectScatter',
+							symbolSize: 20,
+							data: data1,
+						},
+						{
+							type: 'scatter',
+							// type: 'effectScatter',
+							symbolSize: 20,
+							color: 'white',
+							data: data2,
+						}
+					]
+				};
+
+				if (option && typeof option === 'object') {
+					myChart.setOption(option);
+				}
+			});
+		</script>
+	</body>
+</html>
