@@ -44,7 +44,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/robots.txt"
   },
   {
-    "revision": "8e7523aa5e769333ffab2c1bc86bed69",
+    "revision": "2d97613d64349cda1e5fa7194204e452",
     "url": "/static/2020-2月份.html"
   },
   {
@@ -68,7 +68,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/heatmap-cartesian.html"
   },
   {
-    "revision": "49e2b2c907e28e22a023fef31065d3d7",
+    "revision": "b2398f7ea7b202742c26c26d18799aac",
     "url": "/static/heatmap.html"
   },
   {
@@ -92,7 +92,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/qaq.json"
   },
   {
-    "revision": "1af4da98a03c93e5746372f30c849afc",
+    "revision": "65965c105e9ddbcad5399d079b84db85",
     "url": "/static/wordcloud.html"
   },
   {
@@ -100,11 +100,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/动态柱状图final.html"
   },
   {
-    "revision": "daeea63b9f6922bdbbe80dfd0691bb75",
+    "revision": "409d382cd197dfd575e336ea5ce8bf3d",
     "url": "/static/情感指数.html"
   },
   {
-    "revision": "bcfd6a920e7388a9c500748378ab7e1a",
+    "revision": "0b82210b6425fb7a10935971de728603",
     "url": "/static/春运迁徙.html"
   },
   {
@@ -116,7 +116,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/武汉迁出14-28号.json"
   },
   {
-    "revision": "475508a8927be6558a4967df507b6241",
+    "revision": "860bd95baf0f7c5d1610ca32c86addfc",
     "url": "/static/聚类散点.html"
   },
   {
