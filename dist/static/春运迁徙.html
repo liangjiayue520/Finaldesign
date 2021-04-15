@@ -1,0 +1,113 @@
+<html style="height: 100%">
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body style="height: 100%; margin: 0">
+		<div id="container" style="height: 100%"></div>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="dark.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+		<script type="text/javascript">
+			let dom = document.getElementById("container");
+			let myChart = echarts.init(dom);
+			let app = {};
+			let option;
+
+			option = {
+				title: {
+					text: "19/20/21全国春运迁徙指数",
+					left: "0%",
+					textStyle: {
+						fontSize: 20,
+						color: "#fff",
+					},
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross',
+						crossStyle: {
+							color: '#000'
+						}
+					}
+				},
+				toolbox: {
+					feature: {
+						dataView: {
+							show: true,
+							readOnly: false
+						},
+						magicType: {
+							show: true,
+							type: ['line', 'bar']
+						},
+						restore: {
+							show: true
+						},
+						saveAsImage: {
+							show: true
+						}
+					}
+				},
+				legend: {
+					borderWidth: 0,
+					data: ['2019', '2020', '2021']
+				},
+				xAxis: [{
+					type: 'category',
+					data: ['01/19', '01/20', '01/21', '01/22', '01/23', '01/24', '01/25', '01/26', '01/27', '01/28', '01/29',
+						'01/30', '01/31', '02/01', '02/02', '02/03', '02/04', '02/05', '02/06', '02/07', '02/08', '02/09', '02/10',
+						'02/11', '02/12', '02/13', '02/14', '02/15', '02/16', '02/17', '02/18', '02/19', '02/20', '02/21', '02/22',
+						'02/23', '02/24', '02/25', '02/26', '02/27', '02/28', '02/29', '02/30', '03/01', '03/02', '03/03', '03/04',
+						'03/05', '03/06'
+					],
+					axisPointer: {
+						type: 'shadow'
+					}
+				}],
+				yAxis: [{
+					type: 'value',
+					name: '全国春运迁徙指数',
+					min: 0,
+					max: 750,
+					interval: 150,
+					axisLabel: {
+						formatter: '{value} '
+					}
+				}],
+				series: [{
+						name: '2019',
+						type: 'bar',
+
+						data: [353, 312, 333, 304, 311, 323, 331, 372, 345, 366, 367, 389, 405, 436, 502, 495, 513, 490, 490, 493, 530,
+							527, 488, 414, 342, 545, 591, 606, 637, 726, 687, 597, 563, 505, 469, 487, 445, 415, 345, 395, 431, 412, 463,
+							478, 368, 327, 364, 471, 355
+						]
+					},
+					{
+						name: '2020',
+						type: 'bar',
+						data: [266, 251, 397, 448, 420, 398, 401, 447, 497, 438, 481, 446, 436, 412, 431, 450, 479, 529, 525, 542, 621,
+							580, 551, 448, 261, 287, 264, 225, 192, 183, 153, 130, 142, 117, 85, 81, 81, 85, 94, 111, 100, 74, 71, 73, 73,
+							70, 73, 92, 96
+						]
+					},
+					{
+						name: '2021',
+						type: 'bar',
+						data: [232, 230, 233, 235, 259, 235, 258, 248, 279, 242, 203, 220, 179, 247, 215, 214, 213, 240, 271, 273, 276,
+							288, 296, 274, 179, 279, 315, 339, 367, 457, 465, 384, 373, 374, 359, 310, 299, 279, 283, 390, 402, 382, 331,
+							311, 295, 297, 344, 300, 315
+						]
+					},
+				]
+			};
+
+
+			if (option && typeof option === 'object') {
+				myChart.setOption(option);
+			}
+		</script>
+	</body>
+</html>
